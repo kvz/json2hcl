@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/hashicorp/hcl/hcl/printer"
-	"github.com/hashicorp/hcl/json/parser"
+	"github.com/Acconut/hcl/hcl/printer"
+	"github.com/Acconut/hcl/json/parser"
 )
 
 func main() {
