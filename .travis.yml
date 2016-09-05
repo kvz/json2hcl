@@ -1,0 +1,41 @@
+language: go
+go:
+- 1.3
+- 1.4
+- 1.5
+- 1.6
+- 1.7
+- tip
+
+matrix:
+  allow_failures:
+  - go: tip
+
+script:
+- cat fixtures/infra.tf.json | go run main.go
+
+before_deploy:
+- export GOROOT_BOOTSTRAP=$GOROOT
+- go get github.com/laher/goxc
+- goxc -t -bc="linux darwin windows"
+- goxc -d=./ -wd=./ -bc="linux darwin windows"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "BkIT/O/xEk41u9emmZkoUvwLWQpD6Od3IVg53jn92tpNJA3qitN2sKEF9YMNp5on+LL8V8/HWpqsjgz7nAXydXo3+Gjgqy6cY9DWcPtP6GkWoXhMwGrckykv6NzTchS5uIsbZtrAN2WuBB3IsM9KaOVtMuCM6qcnW4yURScZsmXyMUw16Vtn13lR+HYHtrHjtRkXdnodfK5TpdnRZJkSCxY6bFFrAQzoFKM1h3TGj1s7mjFh6325lGuthk1s45N83QKfVEV8tRhf4nfUA2Pt/N0cXq8unhd1/8W53Cx6X9wRzU3wxv2QGiZvSGS303Pc8cXAG1o46Wt7cNOaXH2nAlXlczjctT4YvElY9DxV6b/6EWTkXv01MlIaVgNDuNxQl42bp17k4hsxqdd6fdNQF0C3mrN2G5t5cZos21ZlGxsM3XbXvN/18febQfa5ciMeQlqB/Di28mfPyk3jRooKnOhcvS7F6oS4bTXxj54Ext6/tu5XTFQsUk33VEo1RNI4V80OI3ryNaqa4nwh8A3hsOu/sZHw7kuaJVaGA9ywuC3TDG1+oBztOsWDtyP+rlr9td8f543XfR1TlAkVRPRPxUsHLMhWFCuB/zK7LwGw1K61gk3jOwmtlzbZpAChyDInBk4Ks2NE3jUcqj0dml6JmCgNsqGobNGOwf/0tfPLZqU="  file:
+  - snapshot/json2hcl_darwin_386.zip
+  - snapshot/json2hcl_darwin_amd64.zip
+  - snapshot/json2hcl_linux_386.tar.gz
+  - snapshot/json2hcl_linux_amd64.tar.gz
+  - snapshot/json2hcl_linux_arm.tar.gz
+  - snapshot/json2hcl_snapshot_amd64.deb
+  - snapshot/json2hcl_snapshot_armhf.deb
+  - snapshot/json2hcl_snapshot_i386.deb
+  - snapshot/json2hcl_windows_386.zip
+  - snapshot/json2hcl_windows_amd64.zip
+  skip_cleanup: true
+  on:
+    tags: true
+    go: 1.7
+    repo: kvz/json2hcl
