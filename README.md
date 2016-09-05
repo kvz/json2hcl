@@ -59,10 +59,22 @@ go get
 
 We're building a tool called Frey, and we like HCL. We'd like configuration previously 
 built in YAML or TOML to be in HCL now as well. It's easy to convert those to JSON,
-and HCL is able to read JSON natively, but for readability, we wanted to have 
-HCL directly in our repos, and not the machine readable, intermediate JSON configs.
+and HCL is able to read JSON natively, but for readability and maintainability, we wanted to save 
+our infra recipes as HCL directly in our repos, instead of only having machine readable intermediate 
+JSON that we'd need to hack on.
 
-This tool uses already available Hashicorp libraries to support the conversion.
+In the off-chance you too have machine-readable JSON but are interested in converting that
+to the more human-being friendly HCL format, we thought we'd share.
+
+This tool uses already available HashiCorp libraries to support the conversion.
+
+## Todo
+
+- [ ] Should we perhaps also support the conversion the other way? Just for fun?
+- [ ] Tests
+- [ ] Error handling
+- [ ] Tasks for cross-compiling and shipping releases
+- [ ] Give the README.md some love
 
 ## Contributors
 
