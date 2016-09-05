@@ -4,10 +4,10 @@ Convert JSON to HCL via STDIN / STDOUT.
 
 ## Use
 
-Here's an example `infra.tj.json`
+Here's an example [`fixtures/infra.tf.json`](fixtures/infra.tf.json)
 
 ```bash
-$ cat infra.tj.json
+$ cat fixtures/infra.tf.json
 {
   "output": {
     "arn": {
@@ -25,7 +25,7 @@ $ cat infra.tj.json
 Now run it through json2hcl, and it will be converted to HCL
 
 ```bash
-$ cat infra.tf.json | go run main.go
+$ cat fixtures/infra.tf.json | go run main.go
 "output" "arn" {
   "value" "${aws_dynamodb_table.basic-dynamodb-table.arn}"
 }
@@ -39,7 +39,7 @@ $ cat infra.tf.json | go run main.go
 Typical use would be
 
 ```bash
-$ cat infra.tf.json | go run main.go > infra.tf
+$ cat fixtures/infra.tf.json | go run main.go > infra.tf
 ```
 
 ## Development
@@ -63,5 +63,5 @@ This tool uses already available Hashicorp libraries to support the conversion.
 
 ## Contributors
 
-[Marius Kleidl](https://github.com/Acconut)
-[Kevin van Zonneveld](https://github.com/kvz)
+- [Marius Kleidl](https://github.com/Acconut)
+- [Kevin van Zonneveld](https://github.com/kvz)
