@@ -38,5 +38,5 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    go: 1.7
+    go: 1.5
     repo: kvz/json2hcl
