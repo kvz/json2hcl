@@ -2,6 +2,9 @@
 
 Convert JSON to HCL via STDIN / STDOUT.
 
+This tool is in BETA. We'll update the readme from `go run main.go` -> `json2hcl` once we're
+shipping binaries for all platforms.
+
 ## Use
 
 Here's an example [`fixtures/infra.tf.json`](fixtures/infra.tf.json)
