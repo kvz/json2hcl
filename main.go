@@ -3,8 +3,8 @@ package main
 import (
   "os"
   "io/ioutil"
-  "github.com/hashicorp/hcl/json/parser"
-  "github.com/hashicorp/hcl/hcl/printer"
+  "github.com/Acconut/hcl/json/parser"
+  "github.com/Acconut/hcl/hcl/printer"
 )
 
 func main() {
