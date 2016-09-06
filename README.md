@@ -114,7 +114,6 @@ so far, they haven't.
 
 ### v0.0.4 (2016-09-05)
 
-- [x] Add hcl2json via the `-reverse` flag 
 - [x] Error handling
 - [x] Cross-compiling and shipping releases
 
