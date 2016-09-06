@@ -15,15 +15,14 @@ script:
 - cat fixtures/infra.tf.json | go run main.go | go run main.go -reverse
 
 before_deploy:
-- shopt -s expand_aliases
-- alias xcompile='go build -o json2hcl_${TRAVIS_TAG}_${GOOS}_${GOARCH} -ldflags="-X main.Version=${TRAVIS_TAG}" github.com/kvz/json2hcl'
-- GOOS=linux   GOARCH=386   && xcompile
-- GOOS=linux   GOARCH=amd64 && xcompile
-- GOOS=linux   GOARCH=arm   && xcompile
-- GOOS=darwin  GOARCH=386   && xcompile
-- GOOS=darwin  GOARCH=amd64 && xcompile
-- GOOS=windows GOARCH=386   && xcompile
-- GOOS=windows GOARCH=amd64 && xcompile
+- export XCOMPILE='go build -o json2hcl_${TRAVIS_TAG}_${GOOS}_${GOARCH} -ldflags="-X main.Version=${TRAVIS_TAG}" github.com/kvz/json2hcl'
+- GOOS=linux   GOARCH=386   eval "$XCOMPILE"
+- GOOS=linux   GOARCH=amd64 eval "$XCOMPILE"
+- GOOS=linux   GOARCH=arm   eval "$XCOMPILE"
+- GOOS=darwin  GOARCH=386   eval "$XCOMPILE"
+- GOOS=darwin  GOARCH=amd64 eval "$XCOMPILE"
+- GOOS=windows GOARCH=386   eval "$XCOMPILE"
+- GOOS=windows GOARCH=amd64 eval "$XCOMPILE"
 deploy:
   provider: releases
   api_key:
