@@ -15,6 +15,7 @@ script:
 - cat fixtures/infra.tf.json | go run main.go | go run main.go -reverse
 
 before_deploy:
+- shopt -s expand_aliases
 - alias xcompile='go build -o json2hcl_${TRAVIS_TAG}_${GOOS}_${GOARCH} -ldflags="-X main.Version=${TRAVIS_TAG}" github.com/kvz/json2hcl'
 - GOOS=linux   GOARCH=386   && xcompile
 - GOOS=linux   GOARCH=amd64 && xcompile
