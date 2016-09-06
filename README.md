@@ -1,4 +1,4 @@
-# json2hcl
+# json2hcl (and hcl2json)
 
 Convert JSON to HCL and HCL to JSON via STDIN / STDOUT.
 
