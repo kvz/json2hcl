@@ -107,6 +107,7 @@ so far, they haven't.
 ### v0.0.6 (Unreleased)
 
 - [ ] Tests
+- [ ] Deprecate goxc in favor of native builds
 
 ### v0.0.5 (2016-09-06)
 
