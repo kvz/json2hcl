@@ -7,20 +7,20 @@ import (
 	"io/ioutil"
 	"os"
 
-	hcl "github.com/Acconut/hcl"
+	"github.com/Acconut/hcl"
 	"github.com/Acconut/hcl/hcl/printer"
 	jsonParser "github.com/Acconut/hcl/json/parser"
 )
 
 // VERSION is what is returned by the `-v` flag
-var VERSION = "v0.0.4"
+const Version = "development"
 
 func main() {
 	version := flag.Bool("version", false, "Prints current app version")
 	reverse := flag.Bool("reverse", false, "Input HCL, output JSON")
 	flag.Parse()
 	if *version {
-		fmt.Println(VERSION)
+		fmt.Println(Version)
 		return
 	}
 

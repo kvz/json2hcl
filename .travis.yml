@@ -12,13 +12,13 @@ matrix:
   - go: tip
 
 script:
-- cat fixtures/infra.tf.json | go run main.go | go run main.go -reverse 
+- cat fixtures/infra.tf.json | go run main.go | go run main.go -reverse
 
 before_deploy:
 - export GOROOT_BOOTSTRAP=$GOROOT
 - go get github.com/laher/goxc
 - goxc -t -bc="linux darwin windows"
-- goxc -d=./ -wd=./ -bc="linux darwin windows"
+- goxc -d=./ -wd=./ -bc="linux darwin windows" -build-ldflags="-X main.Version=$TRAVIS_TAG"
 
 deploy:
   provider: releases
