@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -9,7 +10,17 @@ import (
 	"github.com/Acconut/hcl/json/parser"
 )
 
+// VERSION is what is returned by the `-v` flag
+var VERSION = "v0.0.4"
+
 func main() {
+	version := flag.Bool("version", false, "Prints current app version")
+	flag.Parse()
+	if *version {
+		fmt.Println(VERSION)
+		os.Exit(0)
+	}
+
 	if err := convert(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
