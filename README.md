@@ -5,7 +5,7 @@ Convert JSON to HCL and HCL to JSON via STDIN / STDOUT.
 ## Install
 
 Check the [releases](https://github.com/kvz/json2hcl/releases) for the latest version.
-Then it's just a matter of downloading the right one for you platform, extracting, making the binary
+Then it's just a matter of downloading the right one for you platform, and making the binary
 executable. 
 
 ### Linux
@@ -14,12 +14,8 @@ Here's how it could look for 64 bits Linux, if you wanted `json2hcl` available g
 `/usr/local/bin`:
 
 ```bash
-pushd /tmp && \
-  curl -SsLo json2hcl.tar.gz https://github.com/kvz/json2hcl/releases/download/v0.0.5/json2hcl_linux_amd64.tar.gz && \
-  tar zxvf json2hcl.tar.gz && \
-  sudo mv json2hcl_linux_amd64/json2hcl /usr/local/bin/json2hcl && \
-  sudo chmod 755 /usr/local/bin/json2hcl && \
-popd
+curl -SsL https://github.com/kvz/json2hcl/releases/download/v0.0.6/json2hcl_v0.0.6_linux_amd64 \
+  | sudo tee /usr/local/bin/json2hcl > /dev/null && sudo chmod 755 /usr/local/bin/json2hcl && json2hcl -version
 ```
 
 ### OSX
@@ -28,12 +24,8 @@ Here's how it could look for 64 bits Darwin, if you wanted `json2hcl` available 
 `/usr/local/bin`:
 
 ```bash
-pushd /tmp && \
-  curl -SsLo json2hcl.tar.gz https://github.com/kvz/json2hcl/releases/download/v0.0.5/json2hcl_darwin_amd64.zip && \
-  tar zxvf json2hcl.tar.gz && \
-  sudo mv json2hcl_darwin_amd64/json2hcl /usr/local/bin/json2hcl && \
-  sudo chmod 755 /usr/local/bin/json2hcl && \
-popd
+curl -SsL https://github.com/kvz/json2hcl/releases/download/v0.0.6/json2hcl_v0.0.6_darwin_amd64 \
+  | sudo tee /usr/local/bin/json2hcl > /dev/null && sudo chmod 755 /usr/local/bin/json2hcl && json2hcl -version
 ```
 
 ## Use
