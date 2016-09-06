@@ -12,7 +12,7 @@ matrix:
   - go: tip
 
 script:
-- cat fixtures/infra.tf.json | go run main.go
+- cat fixtures/infra.tf.json | go run main.go | go run main.go -reverse
 
 before_deploy:
 - export GOROOT_BOOTSTRAP=$GOROOT
