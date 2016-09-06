@@ -21,19 +21,19 @@ func main() {
 	flag.Parse()
 	if *version {
 		fmt.Println(VERSION)
-		os.Exit(0)
+		return
 	}
 
+	var err error
 	if *reverse {
-		if err := toJSON(); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(0)
-		}
+		err = toJSON()
 	} else {
-		if err := toHCL(); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
-		}
+		err = toHCL()
+	}
+
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 }
 
