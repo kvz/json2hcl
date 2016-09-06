@@ -13,7 +13,7 @@ import (
 )
 
 // VERSION is what is returned by the `-v` flag
-const Version = "development"
+var Version = "development"
 
 func main() {
 	version := flag.Bool("version", false, "Prints current app version")
