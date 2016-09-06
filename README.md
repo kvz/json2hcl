@@ -112,10 +112,13 @@ so far, they haven't.
 
 - [ ] Give the README.md some love
 
-### v0.0.6 (Unreleased)
+### v0.0.7 (Unreleased)
 
 - [ ] Tests
-- [ ] Deprecate goxc in favor of native builds
+
+### v0.0.6 (2016-09-06)
+
+- [x] Deprecate goxc in favor of native builds
 
 ### v0.0.5 (2016-09-06)
 
