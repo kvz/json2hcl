@@ -44,18 +44,17 @@ func toJSON() error {
 	}
 
 	var v interface{}
-	hcl.Decode(v, string(input))
-	// hcl.Unmarshal(input, v)
+	err = hcl.Unmarshal(input, &v)
 	if err != nil {
 		return fmt.Errorf("unable to parse HCL: %s", err)
 	}
 
-	json, err := json.Marshal(v)
+	json, err := json.MarshalIndent(v, "", "  ")
 	if err != nil {
 		return fmt.Errorf("unable to marshal json: %s", err)
 	}
 
-	fmt.Print(string(json))
+	fmt.Println(string(json))
 
 	return nil
 }
