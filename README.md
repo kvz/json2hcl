@@ -6,47 +6,45 @@ Convert JSON to HCL and HCL to JSON via STDIN / STDOUT.
 
 Check the [releases](https://github.com/kvz/json2hcl/releases) for the latest version.
 Then it's just a matter of downloading the right one for you platform, extracting, making the binary
-executable. Here's how it looks for 64 bits Linux:
+executable. 
+
+## Linux
+
+Here's how it could look for 64 bits Linux, if you wanted `json2hcl` available globally inside
+`/usr/local/bin`:
 
 ```bash
-pushd /tmp
-curl -SsLo json2hcl_linux_amd64.tar.gz https://github.com/kvz/json2hcl/releases/download/v0.0.5/json2hcl_linux_amd64.tar.gz
-tar zxvf json2hcl_linux_amd64.tar.gz
-sudo mv json2hcl_linux_amd64/json2hcl /usr/sbin/json2hcl
-sudo chmod 755 /usr/sbin/json2hcl
+pushd /tmp && \
+  curl -SsLo json2hcl.tar.gz https://github.com/kvz/json2hcl/releases/download/v0.0.5/json2hcl_linux_amd64.tar.gz && \
+  tar zxvf json2hcl.tar.gz && \
+  sudo mv json2hcl_linux_amd64/json2hcl /usr/local/bin/json2hcl && \
+  sudo chmod 755 /usr/local/bin/json2hcl && \
+popd
+```
+
+## OSX
+
+Here's how it could look for 64 bits Darwin, if you wanted `json2hcl` available globally inside
+`/usr/local/bin`:
+
+```bash
+pushd /tmp && \
+  curl -SsLo json2hcl.tar.gz https://github.com/kvz/json2hcl/releases/download/v0.0.5/json2hcl_darwin_amd64.zip && \
+  tar zxvf json2hcl.tar.gz && \
+  sudo mv json2hcl_darwin_amd64/json2hcl /usr/local/bin/json2hcl && \
+  sudo chmod 755 /usr/local/bin/json2hcl && \
 popd
 ```
 
 ## Use
 
-Here's an example [`fixtures/infra.tf.json`](fixtures/infra.tf.json)
+Here's an example [`fixtures/infra.tf.json`](fixtures/infra.tf.json) being
+converted to HCL:
 
 ```bash
-$ cat fixtures/infra.tf.json
-{
-  "output": {
-    "arn": {
-      "value": "${aws_dynamodb_table.basic-dynamodb-table.arn}"
-    },
-    "endpoint": {
-      "value": "http://dynamodb.com:8080/endpoint/${aws_dynamodb_table.basic-dynamodb-table.arn}"
-    }
-  }
-  ... rest of JSON truncated
-}
-... 
-```
-
-Now run it through json2hcl, and it will be converted to HCL
-
-```bash
-$ cat fixtures/infra.tf.json | json2hcl
+$ json2hcl < fixtures/infra.tf.json
 "output" "arn" {
   "value" "${aws_dynamodb_table.basic-dynamodb-table.arn}"
-}
-
-"output" "endpoint" {
-  "value" "http://dynamodb.com:8080/endpoint/${aws_dynamodb_table.basic-dynamodb-table.arn}"
 }
 ... rest of HCL truncated
 ```
@@ -54,7 +52,7 @@ $ cat fixtures/infra.tf.json | json2hcl
 Typical use would be
 
 ```bash
-$ cat fixtures/infra.tf.json | json2hcl > infra.tf
+$ json2hcl < fixtures/infra.tf.json > fixtures/infra.tf
 ```
 
 ## hcl2json
@@ -62,10 +60,20 @@ $ cat fixtures/infra.tf.json | json2hcl > infra.tf
 As a bonus, the conversation the other way around is also supported via the `-reverse` flag:
 
 ```bash
-cat fixtures/infra.tf | json2hcl -reverse
-# Writes JSON to the STDOUT
+$ json2hcl -reverse < fixtures/infra.tf
+{
+  "output": [
+    {
+      "arn": [
+        {
+          "value": "${aws_dynamodb_table.basic-dynamodb-table.arn}"
+        }
+      ]
+    }, 
+  ... rest of JSON truncated
+  ]
+}
 ```
-
 
 ## Development
 
