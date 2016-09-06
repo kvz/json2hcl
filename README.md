@@ -8,7 +8,7 @@ Check the [releases](https://github.com/kvz/json2hcl/releases) for the latest ve
 Then it's just a matter of downloading the right one for you platform, extracting, making the binary
 executable. 
 
-## Linux
+### Linux
 
 Here's how it could look for 64 bits Linux, if you wanted `json2hcl` available globally inside
 `/usr/local/bin`:
@@ -22,7 +22,7 @@ pushd /tmp && \
 popd
 ```
 
-## OSX
+### OSX
 
 Here's how it could look for 64 bits Darwin, if you wanted `json2hcl` available globally inside
 `/usr/local/bin`:
