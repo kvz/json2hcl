@@ -44,7 +44,7 @@ converted to HCL:
 ```bash
 $ json2hcl < fixtures/infra.tf.json
 "output" "arn" {
-  "value" "${aws_dynamodb_table.basic-dynamodb-table.arn}"
+  "value" = "${aws_dynamodb_table.basic-dynamodb-table.arn}"
 }
 ... rest of HCL truncated
 ```
