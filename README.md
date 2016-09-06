@@ -45,6 +45,16 @@ Typical use would be
 $ cat fixtures/infra.tf.json | go run main.go > infra.tf
 ```
 
+## hcl2json
+
+As a bonus, the conversation the other way around is also supported via the `-reverse` flag:
+
+```bash
+cat fixtures/infra.tf | go run main.go -reverse
+# Writes JSON to the STDOUT
+```
+
+
 ## Development
 
 ```bash
