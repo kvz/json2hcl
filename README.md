@@ -4,6 +4,10 @@
 
 Convert JSON to HCL and HCL to JSON via STDIN / STDOUT.
 
+## Warning
+
+We don't use json2hcl anymore ourselves, so we can't invest time into it. However, we're still welcoing PRs.
+
 ## Install
 
 Check the [releases](https://github.com/kvz/json2hcl/releases) for the latest version.
