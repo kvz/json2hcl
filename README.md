@@ -55,7 +55,7 @@ $ json2hcl < fixtures/infra.tf.json > fixtures/infra.tf
 
 ## hcl2json
 
-As a bonus, the conversation the other way around is also supported via the `-reverse` flag:
+As a bonus, the conversion the other way around is also supported via the `-reverse` flag:
 
 ```bash
 $ json2hcl -reverse < fixtures/infra.tf
