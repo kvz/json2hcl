@@ -1,5 +1,5 @@
 builds:
-- 
+-
   goos:
   - windows
   - darwin
@@ -7,3 +7,59 @@ builds:
   goarch:
     - amd64
     - arm64
+
+# .goreleaser.yaml
+release:
+  # Repo in which the release will be created.
+  # Default is extracted from the origin remote URL or empty if its private hosted.
+  github:
+    owner: great-fork
+    name: json2hcl
+
+  # IDs of the archives to use.
+  # Defaults to all.
+
+  # If set to true, will not auto-publish the release.
+  # Default is false.
+  draft: false
+
+  # If set to auto, will mark the release as not ready for production
+  # in case there is an indicator for this in the tag e.g. v1.0.0-rc1
+  # If set to true, will mark the release as not ready for production.
+  # Default is false.
+  prerelease: false
+
+  # What to do with the release notes in case there the release already exists.
+  #
+  # Valid options are:
+  # - `keep-existing`: keep the existing notes
+  # - `append`: append the current release notes to the existing notes
+  # - `prepend`: prepend the current release notes to the existing notes
+  # - `replace`: replace existing notes
+  #
+  # Default is `keep-existing`.
+  mode: replace
+
+  # Header template for the release body.
+  # Defaults to empty.
+  header: |
+    ## Welcome to the automatically created release at ({{ .Date }})
+
+    Welcome to this new release!
+
+  # Footer template for the release body.
+  # Defaults to empty.
+  footer: |
+    ## Thanks!
+
+    Those were the changes on {{ .Tag }}!
+
+  # You can change the name of the release.
+  # Default is `{{.Tag}}` on OSS and `{{.PrefixedTag}}` on Pro.
+  name_template: "v{{.Version}}"
+
+  # You can disable this pipe in order to not create the release on any SCM.
+  # Keep in mind that this might also break things that depens on the release URL, for instance, homebrew taps.
+  #
+  # Defaults to false.
+  disable: false
