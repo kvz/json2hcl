@@ -13,21 +13,8 @@ release:
   # Repo in which the release will be created.
   # Default is extracted from the origin remote URL or empty if its private hosted.
   github:
-    owner: great-fork
+    owner: kvz
     name: json2hcl
-
-  # IDs of the archives to use.
-  # Defaults to all.
-
-  # If set to true, will not auto-publish the release.
-  # Default is false.
-  draft: false
-
-  # If set to auto, will mark the release as not ready for production
-  # in case there is an indicator for this in the tag e.g. v1.0.0-rc1
-  # If set to true, will mark the release as not ready for production.
-  # Default is false.
-  prerelease: false
 
   # What to do with the release notes in case there the release already exists.
   #
@@ -57,9 +44,3 @@ release:
   # You can change the name of the release.
   # Default is `{{.Tag}}` on OSS and `{{.PrefixedTag}}` on Pro.
   name_template: "v{{.Version}}"
-
-  # You can disable this pipe in order to not create the release on any SCM.
-  # Keep in mind that this might also break things that depens on the release URL, for instance, homebrew taps.
-  #
-  # Defaults to false.
-  disable: false
