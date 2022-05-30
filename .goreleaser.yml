@@ -1,5 +1,5 @@
 builds:
-- 
+-
   goos:
   - windows
   - darwin
@@ -7,3 +7,40 @@ builds:
   goarch:
     - amd64
     - arm64
+
+# .goreleaser.yaml
+release:
+  # Repo in which the release will be created.
+  # Default is extracted from the origin remote URL or empty if its private hosted.
+  github:
+    owner: kvz
+    name: json2hcl
+
+  # What to do with the release notes in case there the release already exists.
+  #
+  # Valid options are:
+  # - `keep-existing`: keep the existing notes
+  # - `append`: append the current release notes to the existing notes
+  # - `prepend`: prepend the current release notes to the existing notes
+  # - `replace`: replace existing notes
+  #
+  # Default is `keep-existing`.
+  mode: replace
+
+  # Header template for the release body.
+  # Defaults to empty.
+  header: |
+    ## Welcome to the automatically created release at ({{ .Date }})
+
+    Welcome to this new release!
+
+  # Footer template for the release body.
+  # Defaults to empty.
+  footer: |
+    ## Thanks!
+
+    Those were the changes on {{ .Tag }}!
+
+  # You can change the name of the release.
+  # Default is `{{.Tag}}` on OSS and `{{.PrefixedTag}}` on Pro.
+  name_template: "v{{.Version}}"
