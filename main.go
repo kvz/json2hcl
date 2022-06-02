@@ -7,13 +7,13 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/hashicorp/hcl"
-	"github.com/hashicorp/hcl/hcl/printer"
-	jsonParser "github.com/hashicorp/hcl/json/parser"
+	"github.com/hashicorp/hcl2/hclparse"
 )
 
 // VERSION is what is returned by the `-v` flag
 var Version = "development"
+
+var parser = hclparse.NewParser()
 
 func main() {
 	version := flag.Bool("version", false, "Prints current app version")
@@ -27,8 +27,8 @@ func main() {
 	var err error
 	if *reverse {
 		err = toJSON()
-	} else {
-		err = toHCL()
+	// } else {
+	// 	err = toHCL()
 	}
 
 	if err != nil {
@@ -44,7 +44,8 @@ func toJSON() error {
 	}
 
 	var v interface{}
-	err = hcl.Unmarshal(input, &v)
+	err = json.Unmarshal(input, &v)
+	fmt.Printf("======= %v ========", err)
 	if err != nil {
 		return fmt.Errorf("unable to parse HCL: %s", err)
 	}
@@ -59,21 +60,23 @@ func toJSON() error {
 	return nil
 }
 
-func toHCL() error {
-	input, err := ioutil.ReadAll(os.Stdin)
-	if err != nil {
-		return fmt.Errorf("unable to read from stdin: %s", err)
-	}
-
-	ast, err := jsonParser.Parse([]byte(input))
-	if err != nil {
-		return fmt.Errorf("unable to parse JSON: %s", err)
-	}
-
-	err = printer.Fprint(os.Stdout, ast)
-	if err != nil {
-		return fmt.Errorf("unable to print HCL: %s", err)
-	}
-
-	return nil
-}
+// func toHCL() error {
+// 	input, err := ioutil.ReadAll(os.Stdin)
+// 	if err != nil {
+// 		return fmt.Errorf("unable to read from stdin: %s", err)
+// 	}
+// 
+// 	ast, err := parser.ParseHCL(input, "<stdin>")
+// 	if err != nil {
+// 		return fmt.Errorf("unable to parse JSON: %s", err)
+// 	}
+// 
+// 	// err = fmt.Fprint(os.Stdin, ast)
+// 	if err != nil {
+// 		return fmt.Errorf("unable to print HCL: %s", err)
+// 	}
+// 
+// 	fmt.Println(string(ast))
+// 
+// 	return nil
+// }
