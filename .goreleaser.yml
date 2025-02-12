@@ -1,3 +1,5 @@
+version: 2
+
 builds:
 -
   goos:
@@ -11,7 +13,7 @@ builds:
 # .goreleaser.yaml
 release:
   # Repo in which the release will be created.
-  # Default is extracted from the origin remote URL or empty if its private hosted.
+  # Default is extracted from the origin remote URL or empty if it is privately hosted.
   github:
     owner: kvz
     name: json2hcl
