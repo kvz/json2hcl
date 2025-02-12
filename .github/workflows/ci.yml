@@ -24,7 +24,7 @@ jobs:
         go-version: ${{ matrix.go-version }}
     - uses: goreleaser/goreleaser-action@v6
       with:
-        args: release --snapshot
+        args: ${{ github.ref_type == 'tag' && 'release' || 'release --snapshot' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/upload-artifact@v4
